@@ -74,8 +74,11 @@ convertTime
 
 
 转换成es5语法(babel)
+
     npm install
+
     npm run dev
+
     得到的list就是转成功的文件
 
 
@@ -84,5 +87,5 @@ npm 使用
     1. npm login      登录
 
     2. npm publish    更新
-    
+
     3. npm unpublish  包名 --force   撤销更新
