@@ -5,13 +5,13 @@ const convertTime = {
         把时间戳转换成 -> 20181010101000 格式 
                        -> new Date 格式
 
-                  参数 -> parm 时间戳
+                  参数 -> payload 时间戳
     */
-    timestamp(parm, type = 1, symbol = '-', sfSymbol = ':') {
-        if (!parm) {
-            return parm
+    timestamp(payload, type = 1, symbol = '-', sfSymbol = ':') {
+        if (!payload) {
+            return payload
         }
-        let datas = new Date(parm)
+        let datas = new Date(payload)
         var N = datas.getFullYear();
         var Y = datas.getMonth() + 1; //获取当前月份的日期
         var R = datas.getDate();
@@ -53,14 +53,14 @@ const convertTime = {
     },
 
     // new date装换成20181010101000格式
-    dateTime(parm, type = '1', symbol = '-', sfSymbol = ':') {
-        if (parm instanceof Date) {
-            var N = parm.getFullYear();
-            var Y = parm.getMonth() + 1; //获取当前月份的日期
-            var R = parm.getDate();
-            var S = parm.getHours();
-            var F = parm.getMinutes();
-            var M = parm.getSeconds();
+    dateTime(payload, type = '1', symbol = '-', sfSymbol = ':') {
+        if (payload instanceof Date) {
+            var N = payload.getFullYear();
+            var Y = payload.getMonth() + 1; //获取当前月份的日期
+            var R = payload.getDate();
+            var S = payload.getHours();
+            var F = payload.getMinutes();
+            var M = payload.getSeconds();
             if (Y.toString().length == 1) {
                 Y = `0${Y}`
             }
@@ -100,7 +100,7 @@ const convertTime = {
                     return `${N}${symbol}${Y}${symbol}${R} ${S}${sfSymbol}${F}${sfSymbol}${M}`;
             }
         }
-        return parm
+        return payload
     },
 
     /*
@@ -121,14 +121,14 @@ const convertTime = {
     },
 
     // 字符串(20181010101000)还原成正常new date时间格式
-    restoreStringDate(parm, type = 1) {
-        if (parm) {
-            var year = parm.substring(0, 4)
-            var month = parm.substring(4, 6)
-            var data = parm.substring(6, 8)
-            var hour = parm.substring(8, 10)
-            var min = parm.substring(10, 12)
-            var sec = parm.substring(12, 14)
+    restoreStringDate(payload, type = 1) {
+        if (payload) {
+            var year = payload.substring(0, 4)
+            var month = payload.substring(4, 6)
+            var data = payload.substring(6, 8)
+            var hour = payload.substring(8, 10)
+            var min = payload.substring(10, 12)
+            var sec = payload.substring(12, 14)
             var date = new Date()
             date.setFullYear(year, Number(month) - 1, data)
             date.setHours(hour, min, sec)
@@ -137,7 +137,25 @@ const convertTime = {
                     return date
             }
         }
-        return parm
+        return payload
+    },
+    // 获取距离当天的指定日期
+    // sonsole.log(assignTime(0)) =>   当天的new data格式
+    // sonsole.log(assignTime(1)) =>   明天的new data格式
+    // sonsole.log(assignTime(-1)) =>  昨天的new data格式
+    assignTime (assignNum) {
+        var today = new Date();
+        // getDate 可返回月份的某一天。
+        today.setDate(today.getDate() + assignNum);
+        return today
+    },
+    // 获得本月的开始日期
+    monthStartTime (payload) {
+        let now = new Date()
+        let nowMonth = now.getMonth()
+        let nowYear = now.getYear()
+        nowYear += (nowYear < 2000) ? 1900 : 0
+        return new Date(nowYear, nowMonth, 1)
     }
 }
 export default convertTime;
