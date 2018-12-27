@@ -77,7 +77,7 @@ convertTime
 
     npm install
 
-    npm run dev
+    npm run build
 
     得到的list就是转成功的文件
 
