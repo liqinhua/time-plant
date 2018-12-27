@@ -80,6 +80,9 @@ convertTime
 
 
 npm 使用
+
     1. npm login      登录
+
     2. npm publish    更新
+    
     3. npm unpublish  包名 --force   撤销更新
