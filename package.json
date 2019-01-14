@@ -1,11 +1,18 @@
 {
   "name": "time-plant",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "时间戳、字符串、标准时间的相互转换和获取时间",
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir dist"
   },
+  "keywords": [
+    "time",
+    "time-plant",
+    "date",
+    "format",
+    "formatting"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/liqinhua/time-plant.git"
